@@ -6,41 +6,46 @@
   <title>Productship — Bottlenecks out. Momentum in.</title>
   <meta name="description" content="Remove product bottlenecks, ship with rhythm, and compound traction. For founders with >€2M raised who want consistent delivery and smarter prioritization." />
   <meta name="robots" content="index,follow" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" type="image/svg+xml" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <main class="wrap">
-    <header class="hero">
-      <div class="eyebrow">productship.co</div>
-      <div class="hero-grid">
-        <!-- Left: copy -->
-        <div class="hero-copy">
-          <h1>🚀 Build the fastest iterating company the world has ever seen</h1>
-          <p class="lead">
-            You’ve raised capital, built a team, and put some product process in place.
-            Now the challenge isn’t ideas — it’s turning them into traction.
-          </p>
-          <div class="cta-row">
-            <a class="btn" href="https://calendly.com/YOUR-SLUG/clarity-call" target="_blank" rel="noopener">Book a free clarity call</a>
-            <a class="muted" href="#get-started">How to get started ↓</a>
-          </div>
-        </div>
+    <!-- Brand topbar -->
+    <div class="topbar">
+      <a class="brand" href="/">
+        <img class="logo" src="./images/Logo.png" alt="Productship logo" />
+        <span>Productship.co</span>
+      </a>
+      <nav class="nav">
+        <a class="btn small" href="https://cal.com/javierrincon/30min" target="_blank" rel="noopener">Book a call</a>
+      </nav>
+    </div>
 
-        <!-- Right: video thumbnail -->
-        <a
-          class="hero-video"
-          href="https://www.youtube.com/watch?v=VIDEO_ID&t=START_SECONDSs"
-          target="_blank" rel="noopener"
-          aria-label="Watch Sam Altman on compounding"
-        >
-          <img src="/sam.jpg" alt="Sam Altman on compounding" />
-          <span class="play">▶</span>
-          <span class="caption">Sam Altman on compounding (60s)</span>
-        </a>
+    <header class="hero">
+      <div class="hero-copy">
+        <h1>Build the fastest iterating company <br> the world has ever seen</h1>
+
+        <p class="lead"> You’ve raised capital, built a team, and put some product process in place.<br>
+          <a class="hero-video"
+            href="https://www.youtube.com/shorts/NE436M5PeOw"
+            target="_blank" rel="noopener noreferrer"
+            aria-label="Watch Sam Altman on compounding">
+            <img src="./sam.png" alt="Sam Altman on compounding" loading="lazy" />
+            <span class="play">▶</span>
+          </a>
+          Now the challenge isn’t ideas — it’s turning them into traction.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn" href="https://cal.com/javierrincon/30min" target="_blank" rel="noopener">Book a free clarity call</a>
+          <a class="muted" href="#get-started">How to get started ↓</a>
+        </div>
       </div>
     </header>
+
+
 
     <section class="section" id="problem">
       <h2>The Problem</h2>
@@ -92,7 +97,7 @@
         <div class="tile">
           <h3>👉 Book a clarity call</h3>
           <p>Start with a free clarity call.</p>
-          <p><a class="muted underline" href="https://calendly.com/YOUR-SLUG/clarity-call" target="_blank" rel="noopener">Book your slot</a></p>
+          <p><a class="muted underline" href="https://cal.com/javierrincon/30min" target="_blank" rel="noopener">Book your slot</a></p>
         </div>
         <div class="tile">
           <h3>👉 Join the Bottleneck Club</h3>
@@ -106,10 +111,8 @@
     </section>
 
     <footer class="footer">
-      <p class="sig">
-        Javier Rincon — mentor to 100+ startups (Techstars). Operator at Q.ai (acq. Forbes), Pluto.tv (acq. Viacom), Plug.dj, Open.me, A.Team.
-      </p>
-      <p class="tiny">© <span id="y"></span> Productship. Bottlenecks out. Momentum in.</p>
+      <p class="sig"> Javier Rincon </p>
+      <p class="tiny">© <span id="y"></span> Productship. Bottlenecks out</p>
     </footer>
   </main>
 

@@ -6,82 +6,198 @@
   --card:#151922;
   --grid:rgba(255,255,255,0.06);
 }
+
 *{box-sizing:border-box}
 html,body{height:100%}
-body{
-  margin:0; background:var(--bg); color:var(--fg);
-  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-  line-height:1.6; -webkit-font-smoothing:antialiased;
+
+/* ===== Brand Topbar with Logo ===== */
+.topbar{
+  position: sticky; top: 0; z-index: 20;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 0 10px; margin-bottom:8px;
+  background:rgba(15,17,21,0.65); /* subtle glassy bar over the grid */
+  backdrop-filter:saturate(140%) blur(6px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
 }
-.wrap{max-width:900px; margin:0 auto; padding:32px 20px 80px;
+.brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--fg); font-weight:700; letter-spacing:.02em}
+.logo{width:28px; height:28px; border-radius:50%; display:block}
+.nav{display:flex; align-items:center; gap:14px}
+.nav a{color:var(--muted); text-decoration:none; font-size:.95rem}
+.nav a:hover{color:var(--fg); text-decoration:underline}
+
+/* small green CTA in topbar */
+.btn.small{padding:8px 12px; font-size:.95rem; border-radius:10px}
+
+/* collapse nav links on small screens, keep the CTA */
+@media (max-width:720px){
+  .nav a:not(.btn){display:none}
+}
+
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+.wrap{
+  max-width:900px; margin:0 auto; padding:32px 20px 80px;
   background-image:
     linear-gradient(to right, var(--grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
   background-size:24px 24px;
 }
+
 .eyebrow{color:var(--muted); text-transform:uppercase; letter-spacing:.12em; font-size:.8rem}
 h1{font-size:2.2rem; line-height:1.2; margin:8px 0 8px}
 h2{font-size:1.4rem; margin:36px 0 12px; font-family:"IBM Plex Mono", monospace}
 h3{margin:0 0 6px; font-size:1.1rem}
 .lead{color:var(--muted); font-size:1.05rem; max-width:60ch}
-.section{background:var(--card); padding:20px 18px; border-radius:16px; margin-top:22px; border:1px solid rgba(255,255,255,0.06)}
+
+.section{
+  background:var(--card);
+  padding:20px 18px;
+  border-radius:16px;
+  margin-top:22px;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+/* callout used in Solution */
+.callout{
+  border-left:4px solid var(--accent);
+  background:rgba(255,255,255,0.03);
+  padding:12px 14px;
+  border-radius:12px;
+  margin-top:12px;
+}
+
 ul.bullets{padding-left:18px; margin:10px 0}
 ul.bullets li{margin:8px 0}
+
 ul.arrows{list-style:none; padding-left:0; margin:14px 0}
 ul.arrows li{margin:8px 0; padding-left:22px; position:relative}
 ul.arrows li::before{content:"→"; position:absolute; left:0; top:0; color:var(--accent); font-weight:700}
+
 ol.steps{margin:10px 0 0 18px}
-.btn{display:inline-block; padding:10px 16px; border-radius:12px; font-weight:600;
-  text-decoration:none; color:#001b11; background:var(--accent); border:1px solid rgba(0,0,0,0.2)}
-.btn:hover{filter:brightness(0.95)}
+
+/* ghost button (no green fill) */
+.btn{
+  display:inline-block;
+  padding:10px 16px;
+  border-radius:12px;
+  font-weight:600;
+  text-decoration:none;
+  color:#001b11;                 /* dark text on green */
+  background:var(--accent);      /* green fill */
+  border:1px solid rgba(0,0,0,0.2);
+}
+.btn:hover{ filter:brightness(0.95); }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
 .muted{color:var(--muted); text-decoration:none}
 .muted:hover{text-decoration:underline}
 .underline{text-decoration:underline}
+
 .cta-row{display:flex; gap:14px; align-items:center; margin:18px 0}
+
 .alt-note{color:var(--muted); font-size:.95rem}
 .hero{margin-bottom:10px}
+
+/* clearfix so the floated thumbnail doesn’t leak */
+.hero-copy::after{content:""; display:table; clear:both;}
+
 .footer{margin-top:36px; color:var(--muted)}
 .sig{margin-bottom:8px}
 .tiny{opacity:.8; font-size:.9rem}
 
-/* New tiles grid for "How to get started?" */
+/* ==== "How to get started?" tiles ==== */
 .tiles{display:grid; grid-template-columns:1fr; gap:18px}
-.tile{background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:14px}
+.tile{
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:14px; padding:14px;
+}
 @media (min-width:700px){
   .tiles{grid-template-columns:repeat(3,1fr)}
 }
 
+/* mobile tweaks */
 @media (max-width:600px){
   h1{font-size:1.8rem}
   .cta-row{flex-direction:column; align-items:flex-start}
 }
 
-/* hero layout with video thumb */
-.hero-grid{display:grid; grid-template-columns:1fr; gap:18px; align-items:center}
-@media (min-width:900px){ .hero-grid{grid-template-columns:1.3fr 1fr} }
+/* ==== Hero thumbnail (floated inside the lead) ==== */
+.hero-grid{display:block} /* collapse any 2-col variant */
 
 .hero-video{
-  display:block; position:relative; aspect-ratio:16/9; border-radius:16px;
-  border:1px solid rgba(255,255,255,0.08); background:#000 center/cover no-repeat;
+  float:right;
+  width:110px;
+  /* top | right | bottom | left  → push farther into the gutter */
+  margin:-8px clamp(-112px, -12vw, -36px) 8px 16px;
+  position:relative;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.08);
   overflow:hidden;
+  display:inline-block;
 }
-.hero-video::after{content:""; position:absolute; inset:0;
+.hero-video img{display:block; width:100%; height:auto; background:#000}
+.hero-video::after{
+  content:""; position:absolute; inset:0;
   background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.35));
 }
 .hero-video .play{
-  position:absolute; left:12px; bottom:12px; background:var(--accent); color:#001b11;
-  padding:8px 10px; border-radius:999px; font-weight:700
+  position:absolute; left:8px; bottom:8px;
+  background:var(--accent); color:#001b11;
+  padding:5px 7px; border-radius:999px; font-weight:700; font-size:.85rem;
 }
-.hero-video .caption{
-  position:absolute; right:12px; bottom:12px; font-size:.9rem; color:var(--fg); opacity:.85
+/* hide caption if you had one */
+/* .hero-video .caption{display:none;} */
+
+/* stack nicely on small screens */
+@media (max-width:899px){
+  .hero-video{ float:none; width:100%; margin:12px 0; }
 }
 
-/* shrink the hero video ~50% on desktop */
-@media (min-width:900px){
-  .hero-video{
-    width:50%;
-    justify-self:end;
-    min-width:260px; /* optional floor */
-  }
+/* --- Unify CTA buttons (topbar + hero) and shield from .nav link styles --- */
+.nav a.btn,
+.topbar .btn{
+  background: var(--accent);
+  color: #001b11;
+  border: 1px solid rgba(0,0,0,0.2);
 }
 
+/* keep hover consistent (no underline, same text color) */
+.nav a.btn:hover,
+.topbar .btn:hover{
+  color: #001b11;
+  text-decoration: none;
+  filter: brightness(0.95);
+}
+
+.nav a.btn:focus-visible,
+.topbar .btn:focus-visible{
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Balance section vertical spacing */
+.section h2{ margin: 0 0 12px; }           /* remove the big top margin on section titles */
+.section > :first-child{ margin-top: 0; }  /* safety: no extra top margin on first child */
+.section > :last-child{ margin-bottom: 0; }/* trim extra space at the bottom */
+
+/* Make the first tile (Book a clarity call) use the accent green */
+#get-started .tiles .tile:first-child h3{
+  color: var(--accent);
+}
+#get-started .tiles .tile:first-child a,
+#get-started .tiles .tile:first-child a:visited{
+  color: var(--accent);
+  text-decoration: underline;
+}
+#get-started .tiles .tile:first-child a:hover{
+  filter: brightness(0.95);
+}
