@@ -55,3 +55,33 @@ ol.steps{margin:10px 0 0 18px}
   h1{font-size:1.8rem}
   .cta-row{flex-direction:column; align-items:flex-start}
 }
+
+/* hero layout with video thumb */
+.hero-grid{display:grid; grid-template-columns:1fr; gap:18px; align-items:center}
+@media (min-width:900px){ .hero-grid{grid-template-columns:1.3fr 1fr} }
+
+.hero-video{
+  display:block; position:relative; aspect-ratio:16/9; border-radius:16px;
+  border:1px solid rgba(255,255,255,0.08); background:#000 center/cover no-repeat;
+  overflow:hidden;
+}
+.hero-video::after{content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.35));
+}
+.hero-video .play{
+  position:absolute; left:12px; bottom:12px; background:var(--accent); color:#001b11;
+  padding:8px 10px; border-radius:999px; font-weight:700
+}
+.hero-video .caption{
+  position:absolute; right:12px; bottom:12px; font-size:.9rem; color:var(--fg); opacity:.85
+}
+
+/* shrink the hero video ~50% on desktop */
+@media (min-width:900px){
+  .hero-video{
+    width:50%;
+    justify-self:end;
+    min-width:260px; /* optional floor */
+  }
+}
+
